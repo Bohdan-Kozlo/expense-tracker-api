@@ -1,3 +1,5 @@
+import { IsEnum, IsNotEmpty, IsNumberString } from "class-validator";
+
 export enum Category {
   Groceries = "Groceries",
   Leisure = "Leisure",
@@ -12,7 +14,13 @@ export enum Category {
 }
 
 export class CreateExpenseDto {
+  @IsNotEmpty()
+  @IsNumberString()
   amount: number;
+
+  @IsNotEmpty()
   description: string;
+
+  @IsEnum(Category)
   category: Category;
 }
